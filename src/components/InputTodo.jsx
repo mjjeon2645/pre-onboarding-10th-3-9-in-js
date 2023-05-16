@@ -4,11 +4,13 @@ import { useCallback, useEffect, useState } from 'react';
 
 import { createTodo } from '../api/todo';
 import useFocus from '../hooks/useFocus';
+import useRecommendationStore from '../hooks/useRecommendationStore';
 
 export default function InputTodo({ setTodos }) {
   const [inputText, setInputText] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const { ref, setFocus } = useFocus();
+  const recommendationStore = useRecommendationStore();
 
   useEffect(() => {
     setFocus();
@@ -42,6 +44,12 @@ export default function InputTodo({ setTodos }) {
     [inputText, setTodos],
   );
 
+  const handleChangeInput = async (e) => {
+    const { value } = e.target;
+    setInputText(value);
+    await recommendationStore.fetchRecommendation(value);
+  };
+
   return (
     <form className="form-container" onSubmit={handleSubmit}>
       <input
@@ -49,7 +57,7 @@ export default function InputTodo({ setTodos }) {
         placeholder="Add new todo..."
         ref={ref}
         value={inputText}
-        onChange={(e) => setInputText(e.target.value)}
+        onChange={handleChangeInput}
         disabled={isLoading}
       />
       {!isLoading ? (

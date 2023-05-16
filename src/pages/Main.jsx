@@ -6,11 +6,14 @@ import Dropdown from '../components/Dropdown';
 import TodoList from '../components/TodoList';
 
 import { getTodoList } from '../api/todo';
+import useRecommendationStore from '../hooks/useRecommendationStore';
 
 export default function Main() {
   const [todoListData, setTodoListData] = useState([]);
 
-  const isOpen = true;
+  const recommendationStore = useRecommendationStore();
+
+  const { recommendation } = recommendationStore;
 
   useEffect(() => {
     (async () => {
@@ -24,7 +27,7 @@ export default function Main() {
       <div className="inner">
         <Header />
         <InputTodo setTodos={setTodoListData} />
-        <Dropdown isOpen={isOpen} />
+        <Dropdown isOpen={recommendation.length} recommendation={recommendation} />
         <TodoList todos={todoListData} setTodos={setTodoListData} />
       </div>
     </div>
