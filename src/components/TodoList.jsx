@@ -1,6 +1,6 @@
 import TodoItem from './TodoItem';
 
-function TodoList({ todos, setTodos }) {
+export default function TodoList({ todos, setTodos }) {
   return todos.length ? (
     <ul>
       {todos.map(({ id, title }) => (
@@ -11,4 +11,3 @@ function TodoList({ todos, setTodos }) {
     <div className="empty-list">...</div>
   );
 }
-export default TodoList;

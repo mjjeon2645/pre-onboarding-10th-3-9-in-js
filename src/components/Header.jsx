@@ -1,4 +1,4 @@
-function Header() {
+export default function Header() {
   const headerStyle = {
     padding: '20px 0',
     lineHeight: '1.5em',
@@ -18,5 +18,3 @@ function Header() {
     </header>
   );
 }
-
-export default Header;

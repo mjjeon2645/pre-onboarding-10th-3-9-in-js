@@ -5,7 +5,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { createTodo } from '../api/todo';
 import useFocus from '../hooks/useFocus';
 
-function InputTodo({ setTodos }) {
+export default function InputTodo({ setTodos }) {
   const [inputText, setInputText] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const { ref, setFocus } = useFocus();
@@ -62,5 +62,3 @@ function InputTodo({ setTodos }) {
     </form>
   );
 }
-
-export default InputTodo;
