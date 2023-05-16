@@ -3,7 +3,7 @@ import { useCallback, useState } from 'react';
 
 import { deleteTodo } from '../api/todo';
 
-function TodoItem({ id, title, setTodos }) {
+export default function TodoItem({ id, title, setTodos }) {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleRemoveTodo = useCallback(async () => {
@@ -35,5 +35,3 @@ function TodoItem({ id, title, setTodos }) {
     </li>
   );
 }
-
-export default TodoItem;
